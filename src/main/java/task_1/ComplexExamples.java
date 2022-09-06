@@ -103,7 +103,7 @@ import java.util.stream.Stream;
                 }
 
         public static void makeSortedListOfPersons (Person [] personList){
-            Stream<Person> stream = Arrays.stream(RAW_DATA).distinct();
+            Stream<Person> stream = Arrays.stream(personList).distinct();
             ArrayList <Person> sortedList = (ArrayList<Person>) stream
                     .sorted(Comparator.comparing(Person::getName)
                             .thenComparing(Person::getId))
