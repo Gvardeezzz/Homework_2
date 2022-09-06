@@ -1,9 +1,14 @@
+package task_1;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.groupingBy;
 
     public class ComplexExamples {
@@ -96,7 +101,7 @@ import static java.util.stream.Collectors.groupingBy;
             System.out.println();
             System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
             System.out.println();
-
+            makeSortedListOfPersons(RAW_DATA);
         /*
         Task1
             Убрать дубликаты, отсортировать по идентификатору, сгруппировать по имени
@@ -131,5 +136,24 @@ import static java.util.stream.Collectors.groupingBy;
          */
 
 
+        }
+
+        public static void makeSortedListOfPersons (Person [] personList){
+            Map<Integer,String> personMap = new HashMap<>();
+            Stream<Person> stream = Arrays.stream(RAW_DATA).distinct();
+            stream.forEach(x-> personMap.put(x.getId(), x.getName()));
+            personMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
+            String prevousName = null;
+            int count = 1;
+            for (Integer key : personMap.keySet()) {
+                String currentName = personMap.get(key);
+                if (prevousName != currentName){
+                    System.out.println(currentName + ":");
+                count = 1;
+                }
+                prevousName = currentName;
+                System.out.println(count + " - " + currentName + " ("+ key +")");
+                count++;
+            }
         }
     }
