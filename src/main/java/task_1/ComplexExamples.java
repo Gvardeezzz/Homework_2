@@ -139,20 +139,19 @@ import static java.util.stream.Collectors.groupingBy;
         }
 
         public static void makeSortedListOfPersons (Person [] personList){
-            Map<Integer,String> personMap = new HashMap<>();
             Stream<Person> stream = Arrays.stream(RAW_DATA).distinct();
-            stream.forEach(x-> personMap.put(x.getId(), x.getName()));
-            personMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
+            ArrayList <Person> sortedList = (ArrayList<Person>) stream.sorted(Comparator.comparing(Person::getName).thenComparing(Person::getId)).collect(Collectors.toList());
+
             String prevousName = "";
             int count = 1;
-            for (Integer key : personMap.keySet()) {
-                String currentName = personMap.get(key);
+            for (Person p : sortedList) {
+                String currentName = p.getName();
                 if (!prevousName.equals(currentName)){
                     System.out.println(currentName + ":");
                 count = 1;
                 }
                 prevousName = currentName;
-                System.out.println(count + " - " + currentName + " ("+ key +")");
+                System.out.println(count + " - " + currentName + " ("+ p.getId() +")");
                 count++;
             }
         }
