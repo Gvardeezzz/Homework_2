@@ -8,9 +8,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.groupingBy;
-
     public class ComplexExamples {
 
         static class Person {
