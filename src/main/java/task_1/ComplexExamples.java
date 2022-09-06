@@ -140,7 +140,10 @@ import static java.util.stream.Collectors.groupingBy;
 
         public static void makeSortedListOfPersons (Person [] personList){
             Stream<Person> stream = Arrays.stream(RAW_DATA).distinct();
-            ArrayList <Person> sortedList = (ArrayList<Person>) stream.sorted(Comparator.comparing(Person::getName).thenComparing(Person::getId)).collect(Collectors.toList());
+            ArrayList <Person> sortedList = (ArrayList<Person>) stream
+                    .sorted(Comparator.comparing(Person::getName).
+                            thenComparing(Person::getId)).
+                    collect(Collectors.toList());
 
             String prevousName = "";
             int count = 1;
