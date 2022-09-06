@@ -143,11 +143,11 @@ import static java.util.stream.Collectors.groupingBy;
             Stream<Person> stream = Arrays.stream(RAW_DATA).distinct();
             stream.forEach(x-> personMap.put(x.getId(), x.getName()));
             personMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
-            String prevousName = null;
+            String prevousName = "";
             int count = 1;
             for (Integer key : personMap.keySet()) {
                 String currentName = personMap.get(key);
-                if (prevousName != currentName){
+                if (!prevousName.equals(currentName)){
                     System.out.println(currentName + ":");
                 count = 1;
                 }
