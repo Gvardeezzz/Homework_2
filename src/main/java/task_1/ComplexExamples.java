@@ -102,11 +102,11 @@ import java.util.stream.Stream;
                 }
 
         public static void makeSortedListOfPersons (Person [] personList){
-            Map <String, List <Person>> userNamesMap = Arrays.asList(personList)
+           Arrays.asList(personList)
                     .stream()
                     .distinct()
-                    .collect(Collectors.groupingBy(Person::getName));
-            userNamesMap.entrySet().stream().forEach(x-> System.out.println("key:"
+                    .collect(Collectors.groupingBy(Person::getName))
+                    .entrySet().forEach(x-> System.out.println("key:"
                     + x.getKey() +"\n" + "Value:"+ x.getValue().size()));
             }
         }
