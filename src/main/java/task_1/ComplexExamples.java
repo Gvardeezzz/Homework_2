@@ -15,20 +15,19 @@ package task_1;
         8 - Amelia
         **************************************************
         Duplicate filtered, grouped by name, sorted by name and id:
-        Amelia:
-        1 - Amelia (5)
-        2 - Amelia (6)
-        3 - Amelia (7)
-        4 - Amelia (8)
-        Emily:
-        1 - Emily (3)
-        Harry:
-        1 - Harry (0)
-        2 - Harry (1)
-        3 - Harry (2)
-        Jack:
-        1 - Jack (4)
-     */
+
+        Task1
+            Убрать дубликаты, отсортировать по идентификатору, сгруппировать по имени
+
+            Что должно получиться Key: Amelia
+                Value:4
+                Key: Emily
+                Value:1
+                Key: Harry
+                Value:3
+                Key: Jack
+                Value:1
+         */
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -103,23 +102,11 @@ import java.util.stream.Stream;
                 }
 
         public static void makeSortedListOfPersons (Person [] personList){
-            Stream<Person> stream = Arrays.stream(personList).distinct();
-            ArrayList <Person> sortedList = (ArrayList<Person>) stream
-                    .sorted(Comparator.comparing(Person::getName)
-                            .thenComparing(Person::getId))
-                    .collect(Collectors.toList());
-
-            String prevousName = "";
-            int count = 1;
-            for (Person p : sortedList) {
-                String currentName = p.getName();
-                if (!prevousName.equals(currentName)){
-                    System.out.println(currentName + ":");
-                count = 1;
-                }
-                prevousName = currentName;
-                System.out.println(count + " - " + currentName + " ("+ p.getId() +")");
-                count++;
+            Map <String, List <Person>> userNamesMap = Arrays.asList(personList)
+                    .stream()
+                    .distinct()
+                    .collect(Collectors.groupingBy(Person::getName));
+            userNamesMap.entrySet().stream().forEach(x-> System.out.println("key:"
+                    + x.getKey() +"\n" + "Value:"+ x.getValue().size()));
             }
         }
-    }
