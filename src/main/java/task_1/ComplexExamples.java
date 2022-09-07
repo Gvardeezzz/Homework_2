@@ -102,28 +102,11 @@ import java.util.stream.Stream;
                 }
 
         public static void makeSortedListOfPersons (Person [] personList){
-            Map <String, Integer> finalMap= new HashMap<>();
-            Stream<Person> stream = Arrays.stream(personList).distinct();
-            ArrayList <Person> sortedList = (ArrayList<Person>) stream
-                    .sorted(Comparator.comparing(Person::getName)
-                            .thenComparing(Person::getId))
-                    .collect(Collectors.toList());
-
-            String prevousName = "";
-            int count = 1;
-            for (Person p : sortedList) {
-                String currentName = p.getName();
-                if (!prevousName.equals(currentName)){
-                count = 1;
-                }
-                prevousName = currentName;
-                finalMap.put(prevousName, count);
-                count++;
-            }
-
-            for(String key: finalMap.keySet()) {
-                System.out.println("key:" + key);
-                System.out.println("Value:" + finalMap.get(key));
+            Map <String, List <Person>> userNamesMap = Arrays.asList(personList)
+                    .stream()
+                    .distinct()
+                    .collect(Collectors.groupingBy(Person::getName));
+            userNamesMap.entrySet().stream().forEach(x-> System.out.println("key:"
+                    + x.getKey() +"\n" + "Value:"+ x.getValue().size()));
             }
         }
-    }
