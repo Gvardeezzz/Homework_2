@@ -21,6 +21,11 @@ public class Main {
         System.out.println(fuzzySearch("lw", "cartwheel")); // false
     }
     public static boolean fuzzySearch(String word, String example) {
+        if(word == null || example == null) {
+            System.out.println("Incorrect input data!");
+            throw new NullPointerException();
+        }
+
         boolean result = false;
         char [] wordChars = word.toCharArray();
         char [] exampleChars = example.toCharArray();

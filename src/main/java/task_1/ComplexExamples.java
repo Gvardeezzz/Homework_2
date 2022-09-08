@@ -102,11 +102,21 @@ import java.util.stream.Stream;
                 }
 
         public static void makeSortedListOfPersons (Person [] personList){
+            if(personList == null) {
+                System.out.println("Incorrect input data!");
+                throw new NullPointerException();
+            }
+
             Map <String, List <Person>> userNamesMap = Arrays.asList(personList)
                     .stream()
+                    .filter(Objects::nonNull)
                     .distinct()
                     .collect(Collectors.groupingBy(Person::getName));
-            userNamesMap.entrySet().stream().forEach(x-> System.out.println("key:"
-                    + x.getKey() +"\n" + "Value:"+ x.getValue().size()));
+
+            userNamesMap.entrySet()
+                    .stream()
+                    .forEach(x-> System.out.println
+                            ("key:" + x.getKey() +"\n"
+                                    + "Value:"+ x.getValue().size()));
             }
         }

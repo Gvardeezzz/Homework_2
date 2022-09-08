@@ -10,6 +10,14 @@ public class Main {
     static int number = 10;
 
     public static void main(String[] args) {
+        findPair(array, number);
+    }
+    public static void findPair(int [] array, int number) {
+        if (array == null) {
+            System.out.println("Incorrect input data!");
+            throw new NullPointerException();
+        }
+
         int [] pair = new int[2];
         for (int i = 0; i < array.length-1; i++) {
             for (int j = i + 1; j < array.length; j++) {
