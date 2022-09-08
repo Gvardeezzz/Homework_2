@@ -99,12 +99,11 @@ import java.util.stream.Stream;
             System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
             System.out.println();
             makeSortedListOfPersons(RAW_DATA);
-                }
+        }
 
         public static void makeSortedListOfPersons (Person [] personList){
             if(personList == null) {
                 System.out.println("Incorrect input data!");
-                throw new NullPointerException();
             }
 
             Map <String, List <Person>> userNamesMap = Arrays.asList(personList)

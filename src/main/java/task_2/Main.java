@@ -15,7 +15,6 @@ public class Main {
     public static void findPair(int [] array, int number) {
         if (array == null) {
             System.out.println("Incorrect input data!");
-            throw new NullPointerException();
         }
 
         int [] pair = new int[2];

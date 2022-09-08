@@ -23,7 +23,6 @@ public class Main {
     public static boolean fuzzySearch(String word, String example) {
         if(word == null || example == null) {
             System.out.println("Incorrect input data!");
-            throw new NullPointerException();
         }
 
         boolean result = false;
