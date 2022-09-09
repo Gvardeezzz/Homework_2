@@ -110,7 +110,8 @@ import java.util.stream.Stream;
                     .stream()
                     .filter(Objects::nonNull)
                     .distinct()
-                    .collect(Collectors.groupingBy(Person::getName));
+                    .sorted(Comparator.comparing(Person :: getId))
+                    .collect(Collectors.groupingBy(Person :: getName));
 
             userNamesMap.entrySet()
                     .stream()
