@@ -29,13 +29,9 @@ package task_1;
                 Value:1
          */
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
     public class ComplexExamples {
 
@@ -99,14 +95,24 @@ import java.util.stream.Stream;
             System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
             System.out.println();
             makeSortedListOfPersons(RAW_DATA);
-                }
+        }
 
         public static void makeSortedListOfPersons (Person [] personList){
+            if(personList == null) {
+                System.out.println("Incorrect input data!");
+            }
+
             Map <String, List <Person>> userNamesMap = Arrays.asList(personList)
                     .stream()
+                    .filter(Objects::nonNull)
                     .distinct()
-                    .collect(Collectors.groupingBy(Person::getName));
-            userNamesMap.entrySet().stream().forEach(x-> System.out.println("key:"
-                    + x.getKey() +"\n" + "Value:"+ x.getValue().size()));
+                    .sorted(Comparator.comparing(Person :: getId))
+                    .collect(Collectors.groupingBy(Person :: getName));
+
+            userNamesMap.entrySet()
+                    .stream()
+                    .forEach(x-> System.out.println
+                            ("key:" + x.getKey() +"\n"
+                                    + "Value:"+ x.getValue().size()));
             }
         }
