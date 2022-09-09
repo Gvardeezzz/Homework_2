@@ -29,13 +29,9 @@ package task_1;
                 Value:1
          */
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
     public class ComplexExamples {
 
